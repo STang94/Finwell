@@ -9,8 +9,7 @@ ret, frame = cap.read()
 
 # Save the image
 
-cv2.imwrite(f'image75.png', frame)
-
+cv2.imwrite(f'image123.png', frame)
 
 # Release the webcam
 cap.release()
