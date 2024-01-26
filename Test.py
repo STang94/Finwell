@@ -1,7 +1,6 @@
 import cv2
 import inference
 
-ROBOFLOW_API_KEY = "XLGxYY7oZtBY0GZomIBs"
 model = inference.get_roboflow_model("finwell/2", api_key=ROBOFLOW_API_KEY)
 
 
