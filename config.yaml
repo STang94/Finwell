@@ -1,0 +1,7 @@
+path: "E:/Ecole d'inge/Projet d'ingé/IA PROJECT"
+train: images/train  # train images (relative to 'path')
+val: images/train  # val images (relative to 'path')
+
+# Classes
+names:
+  0: poisson
