@@ -6,7 +6,7 @@ cap = cv2.VideoCapture(0)
 
 # Define the codec and create a VideoWriter object for MP4 output
 fourcc = cv2.VideoWriter_fourcc(*'mp4v') # or use 'XVID'
-out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (640, 480))
+out = cv2.VideoWriter('output.mp4', fourcc, 10.0, (640, 480))
 
 start_time = time.time()
 
@@ -17,7 +17,7 @@ while(cap.isOpened()):
         out.write(frame)
 
         # Break the loop after 1 minute
-        if time.time() - start_time > 60:
+        if time.time() - start_time > 30:
             break
     else:
         break
