@@ -17,7 +17,7 @@ while(cap.isOpened()):
         out.write(frame)
 
         # Break the loop after 1 minute
-        if time.time() - start_time > 30:
+        if time.time() - start_time > 600:
             break
     else:
         break
