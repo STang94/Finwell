@@ -6,7 +6,7 @@ cap = cv2.VideoCapture(0)
 
 # Define the codec and create a VideoWriter object for MP4 output
 fourcc = cv2.VideoWriter_fourcc(*'mp4v') # or use 'XVID'
-out = cv2.VideoWriter('output2.mp4', fourcc, 15.0, (640, 480))
+out = cv2.VideoWriter('output3.mp4', fourcc, 12.0, (640, 480))
 
 start_time = time.time()
 
