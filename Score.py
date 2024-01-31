@@ -32,7 +32,7 @@ mean_dist = df['distance'].mean()
 current_time = datetime.now()
 
 # Filter data from the past hour
-past_hour_data = df[df['timestamp'] > current_time - timedelta(hours=1)]
+past_hour_data = df[df['timestamp'] > current_time - timedelta(hours=2)]
 
 # Calculate the mean distance for the past hour
 dist_past_hour = past_hour_data['distance'].mean()
@@ -46,8 +46,8 @@ else:
 
 sort_y1=df.sort_values("y1",ascending=True)["y1"]
 sort_y2=df.sort_values("y2",ascending=True)["y2"]
-mean_y1=sort_y1.iloc.mean()
-mean_y2=sort_y2.iloc.mean()
+mean_y1=sort_y1.mean()
+mean_y2=sort_y2.mean()
 mean_hauteur=(mean_y1+mean_y2)/2
 
 bottom=mean_hauteur*0.3
