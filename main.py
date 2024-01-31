@@ -3,6 +3,7 @@ import cv2
 import csv
 from ultralytics import YOLO
 import time
+import datetime
 
 # Specify the path to the YOLO model weights
 model_path = os.path.join('.', 'runs', 'detect', 'train2', 'weights', 'last.pt')
@@ -23,16 +24,18 @@ if not cap.isOpened():
 
 # Create a CSV file to store the position information
 csv_file_path = 'goldfish_positions.csv'
-with open(csv_file_path, mode='w', newline='') as csvfile:
+
+frame_number = 0
+start_time = time.time()
+
+# Open the CSV file in append mode
+with open(csv_file_path, mode='a', newline='') as csvfile:
     fieldnames = ['timestamp', 'x1', 'y1', 'x2', 'y2', 'score', 'class']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-    
+
+
     # Write header to the CSV file
     writer.writeheader()
-
-    frame_number = 0
-    start_time = time.time()
-
     while True:
         # Read a frame from the webcam
         ret, frame = cap.read()
@@ -57,8 +60,11 @@ with open(csv_file_path, mode='w', newline='') as csvfile:
                 current_time = time.time()
                 if current_time - start_time >= 1:
                     # Write position information to the CSV file
-                    writer.writerow({'timestamp': current_time, 'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'score': score, 'class': 'goldfish'})
+                    writer.writerow({'timestamp': datetime.datetime.now(), 'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'score': score, 'class': 'goldfish'})
                     start_time = current_time
+
+                    # Flush the buffer to immediately see the modification in the CSV file
+                    csvfile.flush()
 
         # Display the resulting frame
         cv2.imshow('Real-Time Object Detection', frame)
