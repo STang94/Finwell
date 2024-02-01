@@ -3,6 +3,7 @@ import math
 import schedule
 import time
 from datetime import datetime, timedelta
+from sms import send_sms
 def job():
     # Read the CSV file into a DataFrame
     df = pd.read_csv('generated_data.csv')
@@ -40,9 +41,9 @@ print(mean_dist)
 print(dist_past_hour)
 # Compare the mean distance of the past hour with the overall mean distance
 if dist_past_hour > mean_dist * 0.6:
-    print("Good condition")
+    send_sms("Your fish is in good condition")
 else:
-    print("Bad condition")
+    send_sms("Your fish is in bad condition")
 
 sort_y1=df.sort_values("y1",ascending=True)["y1"]
 sort_y2=df.sort_values("y2",ascending=True)["y2"]
@@ -59,7 +60,7 @@ print(past_hour_data)
 true_count = past_hour_data['is_below_bottom'].sum()
 print(true_count)
 if true_count < len(past_hour_data)*0.5:
-    print("the fish is at the bottom for a long time")
+    send_sms("the fish is at the bottom for a long time")
 """
 while True:
     schedule.every().hour.at(":00").do(job)
