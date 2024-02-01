@@ -19,7 +19,7 @@ def write_to_csv(filename, data):
         writer.writerow(data)
 
 # Set the start timestamp to two days ago
-start_timestamp = datetime.now() - timedelta(days=1)
+start_timestamp = datetime.now() - timedelta(days=2)
 
 # Set the number of seconds between data points
 seconds_interval = 1

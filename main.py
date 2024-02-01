@@ -15,7 +15,7 @@ model = YOLO(model_path)
 threshold = 0.5
 
 # Open a connection to the webcam (you can specify the camera index, 0 for default camera)
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 # Check if the webcam opened successfully
 if not cap.isOpened():
@@ -23,7 +23,7 @@ if not cap.isOpened():
     exit()
 
 # Create a CSV file to store the position information
-csv_file_path = 'goldfish_positions.csv'
+csv_file_path = 'goldfish_positions2.csv'
 
 frame_number = 0
 start_time = time.time()
