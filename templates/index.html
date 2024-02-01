@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <button onclick="runScript()">Run Python Script</button>
+    <video id="videoPlayer" width="320" height="240" controls>
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+    function runScript() {
+        fetch('/run-script')
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                document.getElementById('videoPlayer').src = '/video';
+            });
+    }
+    </script>
+</body>
+</html>
