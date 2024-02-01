@@ -82,7 +82,7 @@ def job():
         #end_sms("Your fish is in bad condition")
         sleep_mode = True
         print("distance verification")
-    if true_count > len(past_hour_data)*0.5:
+    if true_count > len(past_hour_data)*0.8:
         send_sms("the fish is at the bottom for a long time")
         print("bottom verification")
     if sleep_mode :
