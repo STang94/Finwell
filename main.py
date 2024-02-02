@@ -15,7 +15,7 @@ model = YOLO(model_path)
 threshold = 0.5
 
 # Open a connection to the webcam (you can specify the camera index, 0 for default camera)
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 # Check if the webcam opened successfully
 if not cap.isOpened():
