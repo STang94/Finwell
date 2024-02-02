@@ -27,7 +27,7 @@ def convert_to_yolo_format(x1, y1, x2, y2, image_width, image_height):
 def job():
     print("doing job")
     # Read the CSV file into a DataFrame
-    df = pd.read_csv('goldfish_positions2.csv')
+    df = pd.read_csv('fish_positions.csv')
     # Convert bounding box coordinates to YOLO style
     df_yolo = df.apply(lambda row: pd.Series(convert_to_yolo_format(row['x1'], row['y1'], row['x2'], row['y2'], 1280, 960)), axis=1)
 
@@ -78,15 +78,16 @@ def job():
     true_count = past_hour_data['is_below_bottom'].sum()
     print(dist_past_hour)
     print(true_count)
-    if dist_past_hour < mean_dist *0.3 :
-        #end_sms("Your fish is in bad condition")
+    sleep_mode = False
+    if dist_past_hour < 10000:#mean_dist *0.3 :
+        #send_sms("Your fish is in bad condition")
         sleep_mode = True
         print("distance verification")
-    if true_count > len(past_hour_data)*0.8:
-        send_sms("the fish is at the bottom for a long time")
+    if true_count > 1:#len(past_hour_data)*0.8:
+        #send_sms("the fish is at the bottom for a long time")
         print("bottom verification")
     if sleep_mode :
-        time.sleep(100000)
+        time.sleep(1)
     
 
 
