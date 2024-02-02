@@ -1,8 +1,10 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, Response
+import cv2
 import subprocess
-import os
 
 app = Flask(__name__)
+
+process = None
 
 @app.route('/')
 def home():
@@ -10,12 +12,17 @@ def home():
 
 @app.route('/run-script')
 def run_script():
-    subprocess.call(['python', 'main.py'])
-    return 'Script executed'
+    global process
+    process = subprocess.Popen(['python', 'main.py'])
+    return "output"
 
-@app.route('/video')
-def video():
-    return send_from_directory(os.getcwd(), 'output.mp4')
+@app.route('/shutdown-script', methods=['POST'])
+def shutdown_script():
+    global process
+    if process:
+        process.terminate()
+        process = None
+    return "Script shutdown"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
